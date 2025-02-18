@@ -63,6 +63,40 @@ public class ArrayRotation {
 
     }
 
+
+    public static void reverse(int [] arr, int start, int end){
+        while (start <= end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;            
+        }
+    }
+
+
+    public static void ReversalAlgoRotateLeft(int [] arr, int n) {
+        // reverse first n elements
+        reverse(arr, 0, n-1);
+        // reverse last len-n elements
+        reverse(arr, n, arr.length-1);
+        // reverse full array
+        reverse(arr, 0, arr.length-1);
+    }
+
+    public static void ReversalAlgoRotateRight(int [] arr, int n){
+        
+        // reverse first len-n elements
+        reverse(arr, 0, arr.length-n-1);
+
+        // reverse last n elements
+        reverse(arr, arr.length-n, arr.length-1);
+
+        // reverse full array
+        reverse(arr, 0, arr.length-1);
+
+    }
+
     public static void main(String[] args) throws IOException {
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -76,5 +110,13 @@ public class ArrayRotation {
 
         int[] arr1 = { 1, 2, 3, 4, 5, 6, 7 };
         System.out.println(Arrays.toString(rotateLeftOptimal(arr1, n)));
+
+        int[] arr2 = { 1, 2, 3, 4, 5, 6, 7 };
+        ReversalAlgoRotateRight(arr2, n);
+        System.out.println("Rotated right by "+n+" places "+Arrays.toString(arr2));
+
+        int[] arr3 = { 1, 2, 3, 4, 5, 6, 7 };
+        ReversalAlgoRotateLeft(arr3, n);
+        System.out.println("Rotated left by "+n+" places "+Arrays.toString(arr3));
     }
 }
